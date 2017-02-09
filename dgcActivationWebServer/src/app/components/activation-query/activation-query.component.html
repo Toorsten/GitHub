@@ -1,0 +1,30 @@
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="activationLinkToken" hidden="false">ActivationLinkToken</label>
+			<input type="hidden" class="form-control" id="activationLinkToken" value="{{token}}" #activationLinkToken required>
+		</div>
+		<div class="form-group">
+			<label for="language">{{ 'language' | translate }}</label>
+			<select class="form-control" id="language" #language required>
+				<option></option>
+   				<option value="en">{{ 'english' | translate }}</option>
+				<option value="de">{{ 'german' | translate }}</option>
+				<option value="fr">{{ 'french' | translate }}</option>
+				<option value="it">{{ 'italian' | translate }}</option>
+				<option value="es">{{ 'spanish' | translate }}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="cardPin">{{ 'pin' | translate }}</label>
+			<input type="password" class="form-control" id="cardPin" #cardPin required>
+		</div>
+		<!--<div>
+			<re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6LdEnxQTfkdldc-Wa6iKZSelks823exsdcjX7A-N"></re-captcha>
+		</div>-->
+		<div>
+			<button type="submit" class="btn btn-default" (click)="onSubmit(activationLinkToken.value, cardPin.value, language.value)">{{ 'send' | translate }}</button>
+		</div>
+	</form>
+	<br> {{output}}
+</div>
