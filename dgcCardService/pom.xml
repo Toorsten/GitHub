@@ -113,7 +113,7 @@
                 		<configuration>
                     			<failOnMissingWebXml>false</failOnMissingWebXml>
                     			<outputDirectory>target</outputDirectory>
-					<warName>dgcCardService</warName>
+					<warName>ROOT</warName>
                 		</configuration>
 			</plugin>
 			<!-- <plugin> -->
