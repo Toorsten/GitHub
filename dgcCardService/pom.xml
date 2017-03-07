@@ -6,7 +6,7 @@
 	<groupId>ch.loyalty.dgc</groupId>
 	<artifactId>dgcCardService</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>dgcCardService</name>
 	<description>Service for administrate giftcards</description>
