@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="log-path">logs</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%5p] [%d] (%F:%M:%L) %m%n" />
+		</Console>
+
+		<RollingFile name="debugLogFile" fileName="${log-path}/debug.log"
+			filePattern="${log-path}/debug_%d{yyyy-MM-dd}-%i.log.zip">
+			<PatternLayout>
+				<Pattern>[%5p] [%d] (%F:%M:%L) %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<RollingFile name="infoLogFile" fileName="${log-path}/info.log"
+			filePattern="${log-path}/info_%d{yyyy-MM-dd}-%i.log.zip">
+			<PatternLayout>
+				<Pattern>[%5p] [%d] (%F:%M:%L) %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<RollingFile name="errorLogFile" fileName="${log-path}/error.log"
+			filePattern="${log-path}/error_%d{yyyy-MM-dd}-%i.log.zip">
+			<PatternLayout>
+				<Pattern>[%5p] [%d] (%F:%M:%L) %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="STDOUT" />
+		</Root>
+		<Logger name="org.apache.log4j.xml" level="debug">
+			<appender-ref ref="STDOUT" />
+		</Logger>
+		<Logger name="org.springframework" level="info">
+			<appender-ref ref="STDOUT" />
+		</Logger>
+		<Logger name="org.hibernate" level="info">
+			<appender-ref ref="STDOUT" />
+		</Logger>
+
+		<logger name="errorLogger" level="error" additivity="false">
+			<appender-ref ref="errorLogFile" />
+			<appender-ref ref="STDOUT" />
+		</logger>
+		<logger name="debugLogger" level="debug" additivity="false">
+			<appender-ref ref="debugLogFile" />
+			<appender-ref ref="STDOUT" />
+		</logger>
+		<logger name="infoLogger" level="info" additivity="false">
+			<appender-ref ref="infoLogFile" />
+			<appender-ref ref="STDOUT" />
+		</logger>
+
+
+		<logger name="log4jdbc.log4j2" level="info" additivity="false">
+			<MarkerFilter marker="LOG4JDBC_NON_STATEMENT" onMatch="DENY"
+				onMismatch="NEUTRAL" />
+<!-- 			<appender-ref ref="sqlFile" /> -->
+			<appender-ref ref="STDOUT" />
+		</logger>
+	</Loggers>
+
+</Configuration>

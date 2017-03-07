@@ -1,0 +1,9 @@
+<service>
+	<id>dgcCardService</id>
+	<name>dgcCardService</name>
+	<description>This runs CardService as a Service.</description>
+	<env name="DGCCARDSERVICE_HOME" value="%BASE%" />
+	<executable>java</executable>
+	<arguments>-Xmx256m -jar "%BASE%\dgcCardService.jar"</arguments>
+	<logmode>rotate</logmode>
+</service>
